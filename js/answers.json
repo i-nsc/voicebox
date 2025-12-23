@@ -1,11 +1,11 @@
 {
     "good": [
         "It is certain.",
-        "Without a doubt.",
+        "It is good fate.",
         "Very likely.",
         "You may rely on it.",
-        "As I see it, yes.",
-        "Outlook good.",
+        "Probably.",
+        "Trust the good vibes.",
         "Signs point to yes."
     ],
     "neutral": [
@@ -24,15 +24,19 @@
         "Trust yourself more.",
         "You are ignoring nuances in the situation.",
         "It is only as good as you make it.",
-        "This is not the right question to ask."
+        "This is not the right question to ask.",
+        "You would be happy with either outcome.",
+        "The road might be rough, but keep going.",
+        "Focus on what you can control.",
+        "The answer lies within you."
     ],
     "bad": [
-        "Don't count on it.",
+        "There may be complications ahead.",
         "Maybe take a step back and pause for a moment.",
         "I have a bad feeling about this.",
         "Doubtful.",
-        "Chances aren't good.",
+        "Gut feeling says no.",
         "I wouldn't bet on it.",
-        "The answer is no."
+        "Brace for impact."
     ]
 }
