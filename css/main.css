@@ -18,22 +18,30 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* Changed from align-items: center to allow scrolling from top */
+    align-items: flex-start; 
     min-height: 100vh;
     color: var(--text-main);
+    /* Add padding so it doesn't touch the very top on mobile */
+    padding-top: 40px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
 }
 
 .app-container {
     background: var(--cloud-white);
     width: 90%;
     max-width: 400px;
-    border-radius: 35px; /* Extra rounded corners like a cloud */
-    box-shadow: 0 15px 35px rgba(160, 216, 239, 0.4); /* Blueish glow shadow */
-    overflow: hidden;
+    border-radius: 35px; 
+    box-shadow: 0 15px 35px rgba(160, 216, 239, 0.4); 
+    /* REMOVED: overflow: hidden; */
+    /* REMOVED: height: 70vh; */
+    /* ADDED: min-height to ensure it still looks substantial */
+    min-height: 400px;
     display: flex;
     flex-direction: column;
-    height: 70vh; /* Slightly shorter since we have fewer tabs */
     border: 4px solid #fff; 
+    margin-bottom: 20px; /* Space at bottom for scrolling */
 }
 
 /* Navigation Tabs */
@@ -41,6 +49,9 @@ body {
     display: flex;
     background-color: #fff;
     border-bottom: 2px solid #f0f0f0;
+    /* Rounded top corners to match container */
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 .tab-btn {
@@ -50,7 +61,7 @@ body {
     background: none;
     font-size: 16px;
     font-weight: bold;
-    color: #d1c4e9; /* Inactive color */
+    color: #d1c4e9; 
     cursor: pointer;
     transition: 0.3s;
     outline: none;
@@ -72,7 +83,7 @@ body {
     display: none; 
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Aligns content to top */
     text-align: center;
     animation: fadeIn 0.6s ease-out;
 }
@@ -104,11 +115,13 @@ p {
     border: none;
     width: 160px;
     height: 160px;
+    /* Ensure button doesn't shrink if screen is tiny */
+    flex-shrink: 0; 
     border-radius: 50%;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,7 +133,6 @@ p {
 
 /* Button Colors */
 .btn-love { 
-    /* Pink Gradient for Lala */
     background: linear-gradient(135deg, #ffb7c5 0%, #f48fb1 100%);
     box-shadow: 0 10px 20px rgba(255, 183, 197, 0.5);
 }
@@ -129,7 +141,6 @@ p {
     transform: scale(0.90);
 }
 
-/* Add a little star decoration to buttons using CSS */
 .action-btn::after {
     content: '★';
     position: absolute;
@@ -146,11 +157,12 @@ p {
     font-weight: bold;
     height: 20px;
     color: var(--text-main);
+    padding-bottom: 20px; /* Extra padding at bottom */
 }
 
 /* --- COMING SOON BOX --- */
 .coming-soon-box {
-    background-color: #e3f2fd; /* Pastel Blue background for Kiki */
+    background-color: #e3f2fd; 
     padding: 30px;
     border-radius: 25px;
     border: 2px dashed #90caf9; 
