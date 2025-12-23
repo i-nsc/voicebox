@@ -6,57 +6,57 @@ const config = {
     tarot: 0    // Coming soon
 };
 
-// We will load the answers into this variable
+// ==========================================
+// LOAD ANSWERS
+// ==========================================
 let bookAnswers = [];
 
-// Load the answers immediately when the page loads
 fetch('js/answers.json')
     .then(response => response.json())
     .then(data => {
-        // The JSON now has 3 categories. We need to merge them 
-        // into one single list so we can pick a random one.
-        bookAnswers = [
-            ...data.good, 
-            ...data.neutral, 
-            ...data.bad
-        ];
-        console.log("Answers loaded successfully. Total answers:", bookAnswers.length);
+        bookAnswers = [...data.good, ...data.neutral, ...data.bad];
+        console.log("Answers loaded:", bookAnswers.length);
     })
     .catch(error => {
         console.error("Error loading answers:", error);
-        bookAnswers = ["Yes", "No", "Maybe"]; // Fallback
+        bookAnswers = ["Yes", "No", "Maybe"]; 
     });
 
 let currentAudio = null;
 
 function openTab(evt, tabName) {
-    // 1. Hide all content areas
+    // 1. UI Updates
     const contents = document.querySelectorAll('.content-area');
     contents.forEach(div => div.classList.remove('active'));
     
-    // 2. Remove 'active' class from all buttons
     const btns = document.querySelectorAll('.tab-btn');
     btns.forEach(btn => btn.classList.remove('active'));
 
-    // 3. Show the specific tab content
     document.getElementById(tabName).classList.add('active');
-    
-    // 4. Add 'active' class to the button that was clicked
     evt.currentTarget.classList.add('active');
 
-    // 5. STOP ALL AUDIO
+    // 2. STOP ALL AUDIO
+    stopAllAudio();
+}
+
+function stopAllAudio() {
+    // Stop the random clips (Love tab)
     if(currentAudio) {
         currentAudio.pause();
         currentAudio = null;
         clearStatus();
     }
 
-    const relaxPlayer = document.getElementById('relax-player');
-    if(relaxPlayer) {
-        relaxPlayer.pause();
+    // Stop the Listen tab player
+    const listenPlayer = document.getElementById('listen-player');
+    if(listenPlayer) {
+        listenPlayer.pause();
     }
 }
 
+// ==========================================
+// LOVE TAB LOGIC
+// ==========================================
 function playAudio(category) {
     const maxFiles = config[category];
     const statusDiv = document.getElementById(`status-${category}`);
@@ -66,10 +66,8 @@ function playAudio(category) {
         return;
     }
 
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-    }
+    // Stop other audio first
+    stopAllAudio();
 
     const randomNum = Math.floor(Math.random() * maxFiles) + 1;
     const filePath = `media/audio/${category}_${randomNum}.mp3`;
@@ -79,7 +77,6 @@ function playAudio(category) {
 
     currentAudio.play().catch(e => {
         statusDiv.innerText = "Error: File not found!";
-        console.error("Could not find file:", filePath);
     });
 
     currentAudio.onended = () => {
@@ -87,24 +84,54 @@ function playAudio(category) {
     };
 }
 
+// ==========================================
+// LISTEN TAB LOGIC (New Button System)
+// ==========================================
+function playTrack(filename, buttonElement) {
+    const player = document.getElementById('listen-player');
+    const statusDiv = document.getElementById('status-listen');
+    
+    // Stop any "Love" tab audio if playing
+    if(currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+    }
+
+    // 1. Update the Audio Source
+    player.src = `media/audio/${filename}`;
+    
+    // 2. Play
+    player.play().then(() => {
+        statusDiv.innerText = "Now Playing: " + buttonElement.innerText.trim();
+    }).catch(e => {
+        statusDiv.innerText = "Error: " + filename + " not found.";
+    });
+
+    // 3. Visual Update (Highlight the active button)
+    // Remove 'playing' class from all buttons first
+    const allButtons = document.querySelectorAll('.track-btn');
+    allButtons.forEach(btn => btn.classList.remove('playing'));
+    
+    // Add 'playing' class to the clicked button
+    buttonElement.classList.add('playing');
+}
+
+// ==========================================
+// ANSWER TAB LOGIC
+// ==========================================
 function getAnswer() {
     const display = document.getElementById('answer-display');
     
-    // Safety check
     if (bookAnswers.length === 0) {
         display.innerText = "Loading...";
         return;
     }
 
-    // Fade out
     display.classList.remove('show');
     
     setTimeout(() => {
-        // Pick random answer from the combined list
         const randomAnswer = bookAnswers[Math.floor(Math.random() * bookAnswers.length)];
         display.innerText = randomAnswer;
-        
-        // Fade in
         display.classList.add('show');
     }, 200);
 }

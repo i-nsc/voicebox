@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoiceBox</title>
+    <title>Voice Box</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
 <div class="app-container">
     
-    <!-- Navigation (Now with 4 items) -->
+    <!-- Navigation -->
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="openTab(event, 'love')">Love</button>
-        <button class="tab-btn" onclick="openTab(event, 'relax')">Relax</button>
+        <button class="tab-btn" onclick="openTab(event, 'listen')">Listen</button>
         <button class="tab-btn" onclick="openTab(event, 'answer')">Ask</button>
         <button class="tab-btn" onclick="openTab(event, 'fate')">Fate</button>
     </div>
@@ -26,28 +26,41 @@
         <div class="status-text" id="status-love"></div>
     </div>
 
-    <!-- Tab 2: Relax (Mint Green) -->
-    <div id="relax" class="content-area">
-        <h2>Relaxation 🌿</h2>
-        <p>Close your eyes, take a deep breath, and listen to my voice.</p>
+    <!-- Tab 2: Listen (Mint Green - Button Playlist) -->
+    <div id="listen" class="content-area">
+        <h2>Listen to Me 🎧</h2>
+        <p>Choose a track below:</p>
         
-        <!-- Custom Audio Player Container -->
+        <!-- Track List Buttons -->
+        <div class="track-list">
+            <button class="track-btn" onclick="playTrack('1_guided_sleep.mp3', this)">
+                <span>🌙</span> 1. Guided Sleep
+            </button>
+            
+            <button class="track-btn" onclick="playTrack('2_deep_relaxation.mp3', this)">
+                <span>🌿</span> 2. Deep Relaxation
+            </button>
+            
+            <button class="track-btn" onclick="playTrack('3_spice.mp3', this)">
+                <span>🔥</span> 3. Spice
+            </button>
+        </div>
+
+        <!-- The Audio Player (Hidden until playing, or always visible) -->
         <div class="audio-wrapper">
-            <audio id="relax-player" controls controlsList="nodownload">
-                <source src="media/audio/relax_1.mp3" type="audio/mpeg">
+            <audio id="listen-player" controls controlsList="nodownload">
+                <source src="" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
         </div>
-        <p class="small-text" style="margin-top: 20px;">Guided Relaxation</p>
+        <div class="status-text" id="status-listen"></div>
     </div>
 
     <!-- Tab 3: Answer (Lavender) -->
     <div id="answer" class="content-area">
         <h2>Book of Answers 🔮</h2>
-        <p>Repeat a question three times, then tap the button.</p>
+        <p>Repeat your question three times, then tap the button.</p>
         <button class="action-btn btn-answer" onclick="getAnswer()">Ask</button>
-        
-        <!-- The text answer appears here -->
         <div id="answer-display" class="answer-box"></div>
     </div>
 

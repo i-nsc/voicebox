@@ -2,8 +2,9 @@
     /* Little Twin Stars Palette */
     --lala-pink: #ffb7c5;      
     --kiki-blue: #a0d8ef;      
-    --mint-green: #b9f6ca;     /* New for Relax */
-    --lavender: #e1bee7;       /* New for Answer */
+    --mint-green: #b9f6ca;     
+    --mint-dark: #69f0ae;      /* Darker mint for active state */
+    --lavender: #e1bee7;       
     --star-yellow: #fff59d;    
     --cloud-white: #ffffff;
     
@@ -32,7 +33,7 @@ body {
     max-width: 400px;
     border-radius: 35px; 
     box-shadow: 0 15px 35px rgba(160, 216, 239, 0.4); 
-    min-height: 450px; /* Made slightly taller for the new content */
+    min-height: 500px; /* Made taller for the list */
     display: flex;
     flex-direction: column;
     border: 4px solid #fff; 
@@ -50,10 +51,10 @@ body {
 
 .tab-btn {
     flex: 1;
-    padding: 15px 2px; /* Reduced padding to fit 4 buttons */
+    padding: 15px 2px; 
     border: none;
     background: none;
-    font-size: 13px; /* Smaller font to fit 4 buttons */
+    font-size: 13px; 
     font-weight: bold;
     color: #d1c4e9; 
     cursor: pointer;
@@ -63,7 +64,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Active Tab Styling */
 .tab-btn.active {
     color: var(--text-main);
     background-color: rgba(255, 183, 197, 0.1); 
@@ -98,12 +98,12 @@ h2 {
 }
 
 p { 
-    margin-bottom: 30px; 
+    margin-bottom: 20px; 
     line-height: 1.6; 
     color: var(--text-light); 
 }
 
-/* The Big Buttons */
+/* The Big Buttons (Love/Ask) */
 .action-btn {
     color: white;
     border: none;
@@ -126,7 +126,6 @@ p {
 
 .action-btn:active { transform: scale(0.90); }
 
-/* Button Colors */
 .btn-love { 
     background: linear-gradient(135deg, #ffb7c5 0%, #f48fb1 100%);
     box-shadow: 0 10px 20px rgba(255, 183, 197, 0.5);
@@ -146,14 +145,45 @@ p {
     color: rgba(255,255,255,0.6);
 }
 
-/* Status Text */
-.status-text {
-    margin-top: 25px;
-    font-size: 14px;
+/* --- TRACK LIST BUTTONS --- */
+.track-list {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.track-btn {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #f1f8e9; /* Very light green */
+    color: #558b2f; /* Dark green text */
+    font-size: 15px;
     font-weight: bold;
-    height: 20px;
-    color: var(--text-main);
-    padding-bottom: 20px; 
+    text-align: left;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.track-btn span {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.track-btn:hover {
+    background-color: var(--mint-green);
+}
+
+.track-btn.playing {
+    background-color: var(--mint-dark);
+    color: white;
+    box-shadow: 0 5px 15px rgba(105, 240, 174, 0.4);
 }
 
 /* --- AUDIO PLAYER STYLING --- */
@@ -173,7 +203,7 @@ audio {
     outline: none;
 }
 
-/* --- ANSWER BOX STYLING --- */
+/* --- ANSWER BOX --- */
 .answer-box {
     margin-top: 25px;
     min-height: 60px;
@@ -187,8 +217,15 @@ audio {
     transition: opacity 0.5s;
 }
 
-.answer-box.show {
-    opacity: 1;
+.answer-box.show { opacity: 1; }
+
+/* Status Text */
+.status-text {
+    margin-top: 15px;
+    font-size: 13px;
+    font-weight: bold;
+    height: 20px;
+    color: var(--text-main);
 }
 
 /* --- COMING SOON BOX --- */
