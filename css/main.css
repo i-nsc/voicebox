@@ -3,7 +3,6 @@
     --lala-pink: #ffb7c5;      
     --kiki-blue: #a0d8ef;      
     --mint-green: #b9f6ca;     
-    --mint-dark: #69f0ae;      /* Darker mint for active state */
     --lavender: #e1bee7;       
     --star-yellow: #fff59d;    
     --cloud-white: #ffffff;
@@ -33,7 +32,7 @@ body {
     max-width: 400px;
     border-radius: 35px; 
     box-shadow: 0 15px 35px rgba(160, 216, 239, 0.4); 
-    min-height: 500px; /* Made taller for the list */
+    min-height: 500px; 
     display: flex;
     flex-direction: column;
     border: 4px solid #fff; 
@@ -145,45 +144,23 @@ p {
     color: rgba(255,255,255,0.6);
 }
 
-/* --- TRACK LIST BUTTONS --- */
-.track-list {
+/* --- DROPDOWN MENU --- */
+.track-dropdown {
     width: 100%;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.track-btn {
-    width: 100%;
-    padding: 15px 20px;
-    border: none;
+    padding: 15px;
+    margin-bottom: 25px;
     border-radius: 15px;
-    background-color: #f1f8e9; /* Very light green */
-    color: #558b2f; /* Dark green text */
-    font-size: 15px;
-    font-weight: bold;
-    text-align: left;
+    border: 2px solid var(--mint-green);
+    background-color: white;
+    color: var(--text-main);
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
     cursor: pointer;
-    transition: 0.2s;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.track-btn span {
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-.track-btn:hover {
-    background-color: var(--mint-green);
-}
-
-.track-btn.playing {
-    background-color: var(--mint-dark);
-    color: white;
-    box-shadow: 0 5px 15px rgba(105, 240, 174, 0.4);
+.track-dropdown:focus {
+    border-color: #69f0ae;
 }
 
 /* --- AUDIO PLAYER STYLING --- */

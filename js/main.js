@@ -85,35 +85,32 @@ function playAudio(category) {
 }
 
 // ==========================================
-// LISTEN TAB LOGIC (New Button System)
+// LISTEN TAB LOGIC (Dropdown System)
 // ==========================================
-function playTrack(filename, buttonElement) {
+function changeTrack() {
+    const select = document.getElementById('track-select');
     const player = document.getElementById('listen-player');
     const statusDiv = document.getElementById('status-listen');
     
-    // Stop any "Love" tab audio if playing
+    const selectedFile = select.value;
+    const selectedTitle = select.options[select.selectedIndex].text;
+
+    // Stop Love audio if playing
     if(currentAudio) {
         currentAudio.pause();
         currentAudio = null;
     }
 
-    // 1. Update the Audio Source
-    player.src = `media/audio/${filename}`;
-    
-    // 2. Play
-    player.play().then(() => {
-        statusDiv.innerText = "Now Playing: " + buttonElement.innerText.trim();
-    }).catch(e => {
-        statusDiv.innerText = "Error: " + filename + " not found.";
-    });
-
-    // 3. Visual Update (Highlight the active button)
-    // Remove 'playing' class from all buttons first
-    const allButtons = document.querySelectorAll('.track-btn');
-    allButtons.forEach(btn => btn.classList.remove('playing'));
-    
-    // Add 'playing' class to the clicked button
-    buttonElement.classList.add('playing');
+    if(selectedFile) {
+        player.src = `media/audio/${selectedFile}`;
+        player.load();
+        
+        player.play().then(() => {
+            statusDiv.innerText = "Now Playing: " + selectedTitle;
+        }).catch(e => {
+            statusDiv.innerText = "Error: File not found.";
+        });
+    }
 }
 
 // ==========================================

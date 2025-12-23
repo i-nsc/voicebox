@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voice Box</title>
+    <title>My Voice For You</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -26,27 +26,20 @@
         <div class="status-text" id="status-love"></div>
     </div>
 
-    <!-- Tab 2: Listen (Mint Green - Button Playlist) -->
+    <!-- Tab 2: Listen (Mint Green - Dropdown) -->
     <div id="listen" class="content-area">
         <h2>Listen to Me 🎧</h2>
-        <p>Choose a track below:</p>
+        <p>Select a track from the list below:</p>
         
-        <!-- Track List Buttons -->
-        <div class="track-list">
-            <button class="track-btn" onclick="playTrack('1_guided_sleep.mp3', this)">
-                <span>🌙</span> 1. Guided Sleep
-            </button>
-            
-            <button class="track-btn" onclick="playTrack('2_deep_relaxation.mp3', this)">
-                <span>🌿</span> 2. Deep Relaxation
-            </button>
-            
-            <button class="track-btn" onclick="playTrack('3_spice.mp3', this)">
-                <span>🔥</span> 3. Spice
-            </button>
-        </div>
+        <!-- The Dropdown Menu -->
+        <select id="track-select" class="track-dropdown" onchange="changeTrack()">
+            <option value="" disabled selected>Select a track...</option>
+            <option value="1_guided_sleep.mp3">1. Guided Sleep</option>
+            <option value="2_deep_relaxation.mp3">2. Deep Relaxation</option>
+            <option value="3_spice.mp3">3. Spice</option>
+        </select>
 
-        <!-- The Audio Player (Hidden until playing, or always visible) -->
+        <!-- The Audio Player -->
         <div class="audio-wrapper">
             <audio id="listen-player" controls controlsList="nodownload">
                 <source src="" type="audio/mpeg">
@@ -59,7 +52,7 @@
     <!-- Tab 3: Answer (Lavender) -->
     <div id="answer" class="content-area">
         <h2>Book of Answers 🔮</h2>
-        <p>Repeat your question three times, then tap the button.</p>
+        <p>Focus on a "Yes or No" question, then tap the button.</p>
         <button class="action-btn btn-answer" onclick="getAnswer()">Ask</button>
         <div id="answer-display" class="answer-box"></div>
     </div>
