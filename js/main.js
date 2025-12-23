@@ -2,7 +2,7 @@
 // CONFIGURATION
 // ==========================================
 const config = {
-    love: 5,    // Number of love_x.m4a files
+    love: 22,    // Number of love_x.m4a files
     tarot: 0    // Coming soon
 };
 
