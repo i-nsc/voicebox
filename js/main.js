@@ -2,7 +2,7 @@
 // CONFIGURATION
 // ==========================================
 const config = {
-    love: 5,    // Number of love_x.mp3 files
+    love: 5,    // Number of love_x.m4a files
     tarot: 0    // Coming soon
 };
 
@@ -70,7 +70,7 @@ function playAudio(category) {
     stopAllAudio();
 
     const randomNum = Math.floor(Math.random() * maxFiles) + 1;
-    const filePath = `media/audio/${category}_${randomNum}.mp3`;
+    const filePath = `media/audio/${category}_${randomNum}.m4a`;
 
     currentAudio = new Audio(filePath);
     statusDiv.innerText = "Playing track #" + randomNum + "...";
