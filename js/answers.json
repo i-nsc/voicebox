@@ -1,0 +1,38 @@
+{
+    "good": [
+        "It is certain.",
+        "Without a doubt.",
+        "Very likely.",
+        "You may rely on it.",
+        "As I see it, yes.",
+        "Outlook good.",
+        "Signs point to yes."
+    ],
+    "neutral": [
+        "Reply hazy, try again.",
+        "Ask again later.",
+        "Better not tell you now.",
+        "Cannot predict now.",
+        "Gambling will take you nowhere.",
+        "Concentrate and ask again.",
+        "Maybe yes, maybe no; it depends.",
+        "Respect the unknown.",
+        "You need a plan, not an answer.",
+        "Distract yourself and come back later.",
+        "Stop thinking.",
+        "You overthink and underdo.",
+        "Trust yourself more.",
+        "You are ignoring nuances in the situation.",
+        "It is only as good as you make it.",
+        "This is not the right question to ask."
+    ],
+    "bad": [
+        "Don't count on it.",
+        "Maybe take a step back and pause for a moment.",
+        "I have a bad feeling about this.",
+        "Doubtful.",
+        "Chances aren't good.",
+        "I wouldn't bet on it.",
+        "The answer is no."
+    ]
+}

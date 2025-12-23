@@ -6,31 +6,26 @@ const config = {
     tarot: 0    // Coming soon
 };
 
-// ==========================================
-// BOOK OF ANSWERS - TEXT LIST
-// You can edit these answers!
-// ==========================================
-const bookAnswers = [
-    "Yes, absolutely!",
-    "It is certain.",
-    "Without a doubt.",
-    "Yes - definitely.",
-    "You may rely on it.",
-    "As I see it, yes.",
-    "Most likely.",
-    "Outlook good.",
-    "Signs point to yes.",
-    "Reply hazy, try again.",
-    "Ask again later.",
-    "Better not tell you now.",
-    "Cannot predict now.",
-    "Concentrate and ask again.",
-    "Don't count on it.",
-    "My reply is no.",
-    "My sources say no.",
-    "Outlook not so good.",
-    "Very doubtful."
-];
+// We will load the answers into this variable
+let bookAnswers = [];
+
+// Load the answers immediately when the page loads
+fetch('js/answers.json')
+    .then(response => response.json())
+    .then(data => {
+        // The JSON now has 3 categories. We need to merge them 
+        // into one single list so we can pick a random one.
+        bookAnswers = [
+            ...data.good, 
+            ...data.neutral, 
+            ...data.bad
+        ];
+        console.log("Answers loaded successfully. Total answers:", bookAnswers.length);
+    })
+    .catch(error => {
+        console.error("Error loading answers:", error);
+        bookAnswers = ["Yes", "No", "Maybe"]; // Fallback
+    });
 
 let currentAudio = null;
 
@@ -49,16 +44,13 @@ function openTab(evt, tabName) {
     // 4. Add 'active' class to the button that was clicked
     evt.currentTarget.classList.add('active');
 
-    // 5. STOP ALL AUDIO (Both the random clips AND the relax player)
-    
-    // Stop random clips
+    // 5. STOP ALL AUDIO
     if(currentAudio) {
         currentAudio.pause();
         currentAudio = null;
         clearStatus();
     }
 
-    // Stop Relax Player
     const relaxPlayer = document.getElementById('relax-player');
     if(relaxPlayer) {
         relaxPlayer.pause();
@@ -98,11 +90,17 @@ function playAudio(category) {
 function getAnswer() {
     const display = document.getElementById('answer-display');
     
+    // Safety check
+    if (bookAnswers.length === 0) {
+        display.innerText = "Loading...";
+        return;
+    }
+
     // Fade out
     display.classList.remove('show');
     
     setTimeout(() => {
-        // Pick random answer
+        // Pick random answer from the combined list
         const randomAnswer = bookAnswers[Math.floor(Math.random() * bookAnswers.length)];
         display.innerText = randomAnswer;
         
