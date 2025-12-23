@@ -10,13 +10,15 @@
 
 <div class="app-container">
     
-    <!-- Navigation -->
+    <!-- Navigation (Now with 4 items) -->
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="openTab(event, 'love')">Love</button>
+        <button class="tab-btn" onclick="openTab(event, 'relax')">Relax</button>
+        <button class="tab-btn" onclick="openTab(event, 'answer')">Ask</button>
         <button class="tab-btn" onclick="openTab(event, 'fate')">Fate</button>
     </div>
 
-    <!-- Tab 1: Affirmations (Pink Theme) -->
+    <!-- Tab 1: Love (Pink) -->
     <div id="love" class="content-area active">
         <h2>Daily Affirmation ✨</h2>
         <p>Need a reminder of how much I love you? Tap the star.</p>
@@ -24,17 +26,39 @@
         <div class="status-text" id="status-love"></div>
     </div>
 
-    <!-- Tab 2: Tarot (Blue Theme - Coming Soon) -->
+    <!-- Tab 2: Relax (Mint Green) -->
+    <div id="relax" class="content-area">
+        <h2>Relaxation 🌿</h2>
+        <p>Close your eyes, take a deep breath, and listen to my voice.</p>
+        
+        <!-- Custom Audio Player Container -->
+        <div class="audio-wrapper">
+            <audio id="relax-player" controls controlsList="nodownload">
+                <source src="media/audio/relax_1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <p class="small-text" style="margin-top: 20px;">Audio: Guided Sleep/Relax</p>
+    </div>
+
+    <!-- Tab 3: Answer (Lavender) -->
+    <div id="answer" class="content-area">
+        <h2>Book of Answers 🔮</h2>
+        <p>Focus on a "Yes or No" question, then tap the button.</p>
+        <button class="action-btn btn-answer" onclick="getAnswer()">Ask</button>
+        
+        <!-- The text answer appears here -->
+        <div id="answer-display" class="answer-box"></div>
+    </div>
+
+    <!-- Tab 4: Fate (Blue - Coming Soon) -->
     <div id="fate" class="content-area">
         <h2>Quick Tarot 🌙</h2>
-        
-        <!-- The Coming Soon Box -->
         <div class="coming-soon-box">
             <div class="lock-icon">☁️</div>
             <p class="small-text">I am still reading the stars...</p>
             <p class="small-text" style="font-size: 0.8rem; margin-top:5px;">Check back later!</p>
         </div>
-
     </div>
 
 </div>

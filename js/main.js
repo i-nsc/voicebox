@@ -2,9 +2,35 @@
 // CONFIGURATION
 // ==========================================
 const config = {
-    love: 5,    // Update this to match how many love_x.mp3 files you have
-    tarot: 0    // Set to 0 since it is coming soon
+    love: 5,    // Number of love_x.mp3 files
+    tarot: 0    // Coming soon
 };
+
+// ==========================================
+// BOOK OF ANSWERS - TEXT LIST
+// You can edit these answers!
+// ==========================================
+const bookAnswers = [
+    "Yes, absolutely!",
+    "It is certain.",
+    "Without a doubt.",
+    "Yes - definitely.",
+    "You may rely on it.",
+    "As I see it, yes.",
+    "Most likely.",
+    "Outlook good.",
+    "Signs point to yes.",
+    "Reply hazy, try again.",
+    "Ask again later.",
+    "Better not tell you now.",
+    "Cannot predict now.",
+    "Concentrate and ask again.",
+    "Don't count on it.",
+    "My reply is no.",
+    "My sources say no.",
+    "Outlook not so good.",
+    "Very doubtful."
+];
 
 let currentAudio = null;
 
@@ -23,11 +49,19 @@ function openTab(evt, tabName) {
     // 4. Add 'active' class to the button that was clicked
     evt.currentTarget.classList.add('active');
 
-    // 5. Stop any playing audio if we switch tabs
+    // 5. STOP ALL AUDIO (Both the random clips AND the relax player)
+    
+    // Stop random clips
     if(currentAudio) {
         currentAudio.pause();
         currentAudio = null;
         clearStatus();
+    }
+
+    // Stop Relax Player
+    const relaxPlayer = document.getElementById('relax-player');
+    if(relaxPlayer) {
+        relaxPlayer.pause();
     }
 }
 
@@ -40,21 +74,15 @@ function playAudio(category) {
         return;
     }
 
-    // Stop currently playing audio if any
     if (currentAudio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
     }
 
-    // Pick random number
     const randomNum = Math.floor(Math.random() * maxFiles) + 1;
-    
-    // IMPORTANT: This path points to the media/audio folder
     const filePath = `media/audio/${category}_${randomNum}.mp3`;
 
-    // Create and play audio
     currentAudio = new Audio(filePath);
-    
     statusDiv.innerText = "Playing track #" + randomNum + "...";
 
     currentAudio.play().catch(e => {
@@ -65,6 +93,22 @@ function playAudio(category) {
     currentAudio.onended = () => {
         statusDiv.innerText = "Done.";
     };
+}
+
+function getAnswer() {
+    const display = document.getElementById('answer-display');
+    
+    // Fade out
+    display.classList.remove('show');
+    
+    setTimeout(() => {
+        // Pick random answer
+        const randomAnswer = bookAnswers[Math.floor(Math.random() * bookAnswers.length)];
+        display.innerText = randomAnswer;
+        
+        // Fade in
+        display.classList.add('show');
+    }, 200);
 }
 
 function clearStatus() {

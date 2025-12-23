@@ -1,28 +1,26 @@
 :root {
     /* Little Twin Stars Palette */
-    --lala-pink: #ffb7c5;      /* Soft Pastel Pink */
-    --kiki-blue: #a0d8ef;      /* Soft Pastel Blue */
-    --star-yellow: #fff59d;    /* Moon/Star Yellow */
-    --dream-purple: #b39ddb;   /* Soft Lavender */
+    --lala-pink: #ffb7c5;      
+    --kiki-blue: #a0d8ef;      
+    --mint-green: #b9f6ca;     /* New for Relax */
+    --lavender: #e1bee7;       /* New for Answer */
+    --star-yellow: #fff59d;    
     --cloud-white: #ffffff;
     
     /* Text Colors */
-    --text-main: #6a5acd;      /* Slate Blue/Purple for text */
-    --text-light: #9fa8da;     /* Lighter purple for subtitles */
+    --text-main: #6a5acd;      
+    --text-light: #9fa8da;     
 }
 
 body {
     font-family: 'Verdana', 'Segoe UI', sans-serif;
-    /* The Background is a dreamy gradient from Pink to Blue */
     background: linear-gradient(135deg, #ffe6ee 0%, #e6f7ff 100%);
     margin: 0;
     display: flex;
     justify-content: center;
-    /* Changed from align-items: center to allow scrolling from top */
     align-items: flex-start; 
     min-height: 100vh;
     color: var(--text-main);
-    /* Add padding so it doesn't touch the very top on mobile */
     padding-top: 40px;
     padding-bottom: 40px;
     box-sizing: border-box;
@@ -34,14 +32,11 @@ body {
     max-width: 400px;
     border-radius: 35px; 
     box-shadow: 0 15px 35px rgba(160, 216, 239, 0.4); 
-    /* REMOVED: overflow: hidden; */
-    /* REMOVED: height: 70vh; */
-    /* ADDED: min-height to ensure it still looks substantial */
-    min-height: 400px;
+    min-height: 450px; /* Made slightly taller for the new content */
     display: flex;
     flex-direction: column;
     border: 4px solid #fff; 
-    margin-bottom: 20px; /* Space at bottom for scrolling */
+    margin-bottom: 20px; 
 }
 
 /* Navigation Tabs */
@@ -49,23 +44,22 @@ body {
     display: flex;
     background-color: #fff;
     border-bottom: 2px solid #f0f0f0;
-    /* Rounded top corners to match container */
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
 }
 
 .tab-btn {
     flex: 1;
-    padding: 20px 5px;
+    padding: 15px 2px; /* Reduced padding to fit 4 buttons */
     border: none;
     background: none;
-    font-size: 16px;
+    font-size: 13px; /* Smaller font to fit 4 buttons */
     font-weight: bold;
     color: #d1c4e9; 
     cursor: pointer;
     transition: 0.3s;
     outline: none;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
@@ -83,7 +77,7 @@ body {
     display: none; 
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Aligns content to top */
+    justify-content: flex-start; 
     text-align: center;
     animation: fadeIn 0.6s ease-out;
 }
@@ -100,7 +94,7 @@ body {
 h2 { 
     margin-bottom: 10px; 
     color: var(--text-main);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 }
 
 p { 
@@ -113,9 +107,8 @@ p {
 .action-btn {
     color: white;
     border: none;
-    width: 160px;
-    height: 160px;
-    /* Ensure button doesn't shrink if screen is tiny */
+    width: 150px;
+    height: 150px;
     flex-shrink: 0; 
     border-radius: 50%;
     font-size: 20px;
@@ -131,14 +124,17 @@ p {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
+.action-btn:active { transform: scale(0.90); }
+
 /* Button Colors */
 .btn-love { 
     background: linear-gradient(135deg, #ffb7c5 0%, #f48fb1 100%);
     box-shadow: 0 10px 20px rgba(255, 183, 197, 0.5);
 }
 
-.action-btn:active {
-    transform: scale(0.90);
+.btn-answer {
+    background: linear-gradient(135deg, #e1bee7 0%, #ba68c8 100%);
+    box-shadow: 0 10px 20px rgba(225, 190, 231, 0.5);
 }
 
 .action-btn::after {
@@ -157,7 +153,42 @@ p {
     font-weight: bold;
     height: 20px;
     color: var(--text-main);
-    padding-bottom: 20px; /* Extra padding at bottom */
+    padding-bottom: 20px; 
+}
+
+/* --- AUDIO PLAYER STYLING --- */
+.audio-wrapper {
+    width: 100%;
+    background-color: var(--mint-green);
+    padding: 15px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(185, 246, 202, 0.5);
+}
+
+audio {
+    width: 100%;
+    height: 40px;
+    outline: none;
+}
+
+/* --- ANSWER BOX STYLING --- */
+.answer-box {
+    margin-top: 25px;
+    min-height: 60px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.answer-box.show {
+    opacity: 1;
 }
 
 /* --- COMING SOON BOX --- */
