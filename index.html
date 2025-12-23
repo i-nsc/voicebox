@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Voice For You</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div class="app-container">
+    
+    <!-- Navigation -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'love')">Love</button>
+        <button class="tab-btn" onclick="openTab(event, 'fate')">Fate</button>
+    </div>
+
+    <!-- Tab 1: Affirmations (Pink Theme) -->
+    <div id="love" class="content-area active">
+        <h2>Daily Affirmation ✨</h2>
+        <p>Need a reminder of how much I love you? Tap the star.</p>
+        <button class="action-btn btn-love" onclick="playAudio('love')">Play</button>
+        <div class="status-text" id="status-love"></div>
+    </div>
+
+    <!-- Tab 2: Tarot (Blue Theme - Coming Soon) -->
+    <div id="fate" class="content-area">
+        <h2>Quick Tarot 🌙</h2>
+        
+        <!-- The Coming Soon Box -->
+        <div class="coming-soon-box">
+            <div class="lock-icon">☁️</div>
+            <p class="small-text">I am still reading the stars...</p>
+            <p class="small-text" style="font-size: 0.8rem; margin-top:5px;">Check back later!</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
